@@ -5,6 +5,9 @@
 <meta name="keywords" content="yağ oranı,hesapla">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>">
+
 <title>Fitness ve yağ ölçümü</title>
 <style>
 
@@ -15,14 +18,12 @@ html, body {
     width: 100%;
     min-height: 100%;
     font-family: Arial, sans-serif;
-
     background: url("arkaplan.jpg") no-repeat center center fixed;
     background-size: cover;
-
     color: #ffffff;
 }
 
-/* KUTU (YENİ) */
+/* KUTU */
 .intro-box {
     background: rgba(0,0,0,0.7);
     padding: 30px;
@@ -31,26 +32,28 @@ html, body {
     box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
-/* Ortalanmış içerik için container */
 .container {
     width: 95%;
     max-width: 1600px;
     margin: 0 auto;
     padding: 20px 0;
 }
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.9s ease;
+}
 
-/* Başlıklar */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 h2 {
     color: #e93131;
     text-align: center;
     margin-bottom: 25px;
     font-size: 2.5em;
-}
-h3{
-    color: #a00000;
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 2.2em;
 }
 
 p {
@@ -60,7 +63,6 @@ p {
     margin-bottom: 25px;
 }
 
-/* Alıntılar */
 .quote-text {
     font-size: 20px;
     line-height: 1.8;
@@ -74,7 +76,6 @@ p {
     margin-bottom: 22px;
 }
 
-/* Üst resimler */
 .top-images {
     display: flex;
     justify-content: center;
@@ -91,7 +92,6 @@ p {
     border-radius: 10px;
 }
 
-/* Bilgi kartları */
 .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -101,7 +101,10 @@ p {
 }
 
 .card {
-    background: #1c1c1c;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px);          
+    -webkit-backdrop-filter: blur(10px);  
+
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 0 18px rgba(0,0,0,0.6);
@@ -110,6 +113,12 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
 }
 
 .workout {
@@ -126,7 +135,6 @@ p {
     color: #00ffcc;
 }
 
-/* Yağ Oranı ve Resimler */
 .bodyfat-section {
     display: flex;
     justify-content: space-between;
@@ -152,10 +160,10 @@ p {
     border-radius: 10px;
 }
 
-/* Resim altı kartlar */
 .sub-card {
     width: 85%;
-    background: #1c1c1c;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px);
     padding: 22px;
     border-radius: 16px;
     box-shadow: 0 0 12px rgba(0,0,0,0.5);
@@ -169,13 +177,12 @@ p {
     min-height: 280px;
 }
 
-/* Yağ oranı hesaplayıcı */
 .bodyfat-card {
     width: 100%;
     max-width: 450px;
     padding: 40px;
     padding-top: 10px;     
-    padding-bottom: 0;     
+    padding-bottom: 30px;     
     background: #1c1c1c;
     border-radius: 15px;
     text-align: center;
@@ -218,6 +225,7 @@ button {
 }
 
 button:hover {
+    transform: scale(1.1);
     background: #00e6b8;
 }
 
@@ -225,8 +233,111 @@ button:hover {
     margin-top: 28px;
     font-size: 24px;
     font-weight: bold;
-    color: #ffcc00;
+    color: #ffffff;
 }
+
+#fatMassResult, #leanMassResult {
+    font-size: 18px;
+    color: #dddddd;
+}
+
+#categoryBox {
+    margin-top: 20px;
+    padding: 15px;
+    background: #2a2a2a;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    display: none; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.4) inset;
+}
+
+.bodyfat-title-card {
+    background: rgba(0,0,0,0.7);
+    padding: 20px 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: #ffcc00;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 25px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 25px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.advice-box, .about-box {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.advice-box h3 { color: #00ffcc; margin-top: 0; font-size: 1.5em;}
+.about-box h3 { color: #ffcc00; margin-top: 0; font-size: 1.5em;}
+
+.advice-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+.insta-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #E1306C;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    transition: 0.3s;
+}
+
+.insta-link:hover {
+    transform: scale(1.1);
+    color: #ff4081;
+}
+
+.insta-link svg {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+}
+
+.dm-text {
+    font-size: 16px;
+    color: #aaa;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .top-images img { width: 90%; min-width: auto; }
+    .cards-container { flex-direction: column; align-items: center; }
+    .bodyfat-section { flex-direction: column; align-items: center; }
+    .bodyfat-column { width: 90%; margin-top: 15px; }
+    .bodyfat-card, .sub-card { width: 100%; padding: 20px; }
+    .bodyfat-title-card { font-size: 1.6em; padding: 15px 20px; }
+    .input-group input, .input-group select { width: 95%; }
+    button { width: 95%; font-size: 20px; padding: 15px; }
+    .footer-section { flex-direction: column; }
+}
+
 </style>
 </head>
 <body>
@@ -234,19 +345,14 @@ button:hover {
 <div class="container">
 
 <div class="intro-box">
-
-<h2>Vücut Geliştirme sanatı</h2>
-<p> vücut geliştirme; birçoğumuzun kendini geliştirmek ve sınırlarının dışına çıkmak için başladığı, ilerledikçe kendindeki değişimi ve potansiyeli fark ederek hayatının vazgeçilmez bir parçası haline getirdiği bir spor dalıdır. Kimisi dertlerini hafifletmeye, kimisi kafasını dağıtmaya, kimisi de kas kütlesini artırmaya gelir. Amaç ne olursa olsun ortada bir gayret vardır ve çabanın olduğu her yerde gelişim kaçınılmazdır.</p>
-
+<h2>Vücut Geliştirme Sanatı</h2>
+<p>Vücut geliştirme; birçoğumuzun kendini geliştirmek ve sınırlarının dışına çıkmak için başladığı, ilerledikçe kendindeki değişimi ve potansiyeli fark ederek hayatının vazgeçilmez bir parçası haline getirdiği bir spor dalıdır. Kimisi dertlerini hafifletmeye, kimisi kafasını dağıtmaya, kimisi de kas kütlesini artırmaya gelir. Amaç ne olursa olsun ortada bir gayret vardır ve çabanın olduğu her yerde gelişim kaçınılmazdır.</p>
 <div class="quote-text">“Vücut geliştirme, zihninizi şekillendirmek için vücudunuzu bir araç olarak kullanmaktır.”</div>
 <div class="quote-author">— Arnold Schwarzenegger</div>
-
 <div class="quote-text">“Başarısızlık bir seçenek değildir. Herkes vücut geliştirmek ister ama kimse ağır ağırlıklar kaldırmak istemez.”</div>
 <div class="quote-author">— Ronnie Coleman</div>
-
 <div class="quote-text">“Kaslarınızın acımasına izin verin, çünkü bu onların büyüdüğünün işaretidir.”</div>
 <div class="quote-author">— Dorian Yates</div>
-
 </div>
 
 <div class="top-images">
@@ -256,46 +362,34 @@ button:hover {
 </div>
 
 <div class="cards-container">
-    <div class="card">
-        <div class="quote-text">
-            Fitness yolculuğuna yeni başlayan biri için en önemli şey mükemmel olmak değil, istikrarlı olmaktır.
-        </div>
+    <div class="card hidden">
+        <div class="quote-text">Fitness yolculuğuna yeni başlayan biri için en önemli şey mükemmel olmak değil, istikrarlı olmaktır.</div>
         <div class="author">— Unknown</div>
         <div class="workout">
             <h4>💪 Başlangıç Antrenmanı</h4>
-            3x10 Squat <br>
-            3x10 Şınav <br>
-            3x30 sn Plank
+            3x10 Squat <br>3x10 Şınav <br>3x30 sn Plank
         </div>
     </div>
-
-    <div class="card">
-        <div class="quote-text">
-            Spora yeni başlayan birçok kişi hızlı sonuç almak ister, ancak gerçek gelişim sabır ve disiplinle gelir.
-        </div>
+    <div class="card hidden">
+        <div class="quote-text">Spora yeni başlayan birçok kişi hızlı sonuç almak ister, ancak gerçek gelişim sabır ve disiplinle gelir.</div>
         <div class="author">— Unknown</div>
         <div class="workout">
             <h4>🔥 Kardiyo + Core</h4>
-            20 dk yürüyüş <br>
-            3x15 Mekik <br>
-            3x20 Mountain Climber
+            20 dk yürüyüş <br>3x15 Mekik <br>3x20 Mountain Climber
         </div>
     </div>
-
-    <div class="card">
-        <div class="quote-text">
-            Fitness sadece fiziksel değil, zihinsel bir disiplindir. Vazgeçmediğin sürece ilerleme kaçınılmazdır.
-        </div>
+    <div class="card hidden">
+        <div class="quote-text">Fitness sadece fiziksel değil, zihinsel bir disiplindir. Vazgeçmediğin sürece ilerleme kaçınılmazdır.</div>
         <div class="author">— Unknown</div>
         <div class="workout">
             <h4>🏋️ Güç Antrenmanı</h4>
-            3x8 Bench Press <br>
-            3x8 Barfiks <br>
-            3x10 Dumbbell Curl
+            3x8 Bench Press <br>3x8 Barfiks <br>3x10 Dumbbell Curl
         </div>
     </div>
 </div>
-    <h3>Evde Bir Mezura Yardımı İle Yağ Oranınızı Ölçün</h3>
+
+<div class="bodyfat-title-card">Evde Bir Mezura Yardımı İle Yağ Oranınızı Ölçün</div>
+
 <div class="bodyfat-section">
     <div class="bodyfat-column">
         <img src="erkek15.jpg" alt="%15 Yağ Erkek">
@@ -319,6 +413,10 @@ button:hover {
                 <input type="number" id="height" placeholder="Örn: 180">
             </div>
             <div class="input-group">
+                <label>Kilo (kg):</label>
+                <input type="number" id="weight" placeholder="Örn: 75">
+            </div>
+            <div class="input-group">
                 <label>Boyun Çevresi (cm):</label>
                 <input type="number" id="neck" placeholder="Örn: 40">
             </div>
@@ -331,7 +429,11 @@ button:hover {
                 <input type="number" id="hip" placeholder="Örn: 95">
             </div>
             <button onclick="calculateBodyFat()">Hesapla</button>
+
             <h4 id="bodyFatResult"></h4>
+            <h4 id="fatMassResult"></h4>
+            <h4 id="leanMassResult"></h4>
+            <div id="categoryBox"></div>
         </div>
     </div>
 
@@ -343,13 +445,42 @@ button:hover {
     </div>
 </div>
 
+<div class="footer-section">
+    <div class="advice-box">
+        <h3>🍽️ Beslenme Tavsiyesi</h3>
+        <p class="advice-text" id="adviceText">
+            Boy, kilo ve ölçülerinizi girip "Hesapla" butonuna bastığınızda, yağ oranınıza en uygun beslenme tavsiyesi burada görünecektir.
+        </p>
+    </div>
+
+    <div class="about-box">
+        <h3>👤 Hakkımda</h3>
+        <a href="https://instagram.com/v_powerlifterr" target="_blank" class="insta-link">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+            @v_powerlifterr
+        </a>
+        <p class="dm-text">Daha fazla bilgi ve destek için DM gönderebilirsiniz.</p>
+    </div>
+</div>
+
 </div>
 
 <script>
-document.getElementById("gender").addEventListener("change", function() {
-    document.getElementById("hipDiv").style.display =
-        this.value === "female" ? "flex" : "none";
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add("show"); }
+    });
 });
+
+const hiddenElements = document.querySelectorAll(".hidden");
+hiddenElements.forEach((el) => observer.observe(el));
+
+document.getElementById("gender").addEventListener("change", function() {
+    document.getElementById("hipDiv").style.display = this.value === "female" ? "flex" : "none";
+});
+document.getElementById("hipDiv").style.display = "none";
 
 function calculateBodyFat() {
     let gender = document.getElementById("gender").value;
@@ -357,27 +488,73 @@ function calculateBodyFat() {
     let neck = parseFloat(document.getElementById("neck").value);
     let waist = parseFloat(document.getElementById("waist").value);
     let hip = parseFloat(document.getElementById("hip").value);
+    let weight = parseFloat(document.getElementById("weight").value);
+    let categoryBox = document.getElementById("categoryBox");
+    let adviceText = document.getElementById("adviceText");
 
-    if (!height || !neck || !waist || (gender === "female" && !hip)) {
-        document.getElementById("bodyFatResult").innerText =
-        "Lütfen tüm alanları doldurun!";
+    if (!height || !neck || !waist || !weight || (gender === "female" && !hip)) {
+        document.getElementById("bodyFatResult").innerText = "Lütfen tüm alanları doldurun!";
+        document.getElementById("bodyFatResult").style.color = "#ff3333";
+        document.getElementById("fatMassResult").innerText = "";
+        document.getElementById("leanMassResult").innerText = "";
+        categoryBox.style.display = "none";
+        adviceText.innerText = "Lütfen önce tüm ölçülerinizi eksiksiz girin.";
+        adviceText.style.color = "#ff3333";
         return;
     }
+
+    document.getElementById("bodyFatResult").style.color = "#ffffff"; 
+    adviceText.style.color = "#ddd"; 
 
     function log10(x) { return Math.log(x) / Math.log(10); }
 
     let bodyFat;
     if (gender === "male") {
-        bodyFat = 495 / (1.0324 - 0.19077 * log10(waist - neck) +
-                   0.15456 * log10(height)) - 450;
+        bodyFat = 495 / (1.0324 - 0.19077 * log10(waist - neck) + 0.15456 * log10(height)) - 450;
     } else {
-        bodyFat = 495 / (1.29579 - 0.35004 * log10(waist + hip - neck) +
-                   0.22100 * log10(height)) - 450;
+        bodyFat = 495 / (1.29579 - 0.35004 * log10(waist + hip - neck) + 0.22100 * log10(height)) - 450;
+    }
+    bodyFat = parseFloat(bodyFat.toFixed(1));
+
+    let fatMass = parseFloat((weight * bodyFat / 100).toFixed(1));
+    let leanMass = parseFloat((weight - fatMass).toFixed(1));
+
+    let category = "";
+    let color = "";
+    
+    if (gender === "male") {
+        if (bodyFat <= 17) {
+            category = bodyFat < 6 ? "Çok Düşük Yağ" : (bodyFat <= 13 ? "Atletik" : "Fit");
+            color = "#00ffcc"; 
+        }
+        else if (bodyFat <= 24) { category = "Ortalama"; color = "#ffcc00"; } 
+        else if (bodyFat <= 30) { category = "Yüksek Yağ Oranı"; color = "#ff9900"; } 
+        else { category = "Aşırı Yağ"; color = "#ff3333"; } 
+    } else {
+        if (bodyFat <= 30) {
+            category = bodyFat < 16 ? "Çok Düşük Yağ" : (bodyFat <= 23 ? "Atletik" : "Fit");
+            color = "#00ffcc"; 
+        }
+        else if (bodyFat <= 36) { category = "Ortalama"; color = "#ffcc00"; } 
+        else if (bodyFat <= 42) { category = "Yüksek Yağ Oranı"; color = "#ff9900"; } 
+        else { category = "Aşırı Yağ"; color = "#ff3333"; } 
     }
 
-    bodyFat = bodyFat.toFixed(1);
-    document.getElementById("bodyFatResult").innerText =
-        "Tahmini Yağ Oranı: %" + bodyFat;
+    document.getElementById("bodyFatResult").innerText = "Tahmini Yağ Oranı: %" + bodyFat;
+    document.getElementById("fatMassResult").innerText = "Yağ Kütlesi: " + fatMass + " kg";
+    document.getElementById("leanMassResult").innerText = "Yağsız Kütle: " + leanMass + " kg";
+
+    categoryBox.innerText = category;
+    categoryBox.style.color = color;
+    categoryBox.style.display = "block";
+
+    if (category === "Aşırı Yağ" || category === "Yüksek Yağ Oranı") {
+        adviceText.innerHTML = "Vücut yağ oranınız yüksek seviyede. Bu süreçte <strong>yüksek proteinli</strong> ve kalori açığı oluşturacak bir beslenme planı uygulamalısınız.<br><br>👉 <em>Tavsiye:</em> Izgara tavuk göğsü, fırın somon, bol yeşillikli salata, haşlanmış yumurta ve porsiyon kontrollü kinoa. Şekerden ve işlenmiş gıdalardan kesinlikle uzak durun!";
+    } else if (category === "Çok Düşük Yağ") {
+        adviceText.innerHTML = "Vücut yağ oranınız çok düşük. Hacim kazanmak (bulk) ve antrenman performansınızı artırmak için <strong>kompleks karbonhidratları</strong> artırmalısınız.<br><br>👉 <em>Tavsiye:</em> Yulaf ezmesi, fıstık ezmesi, muz, tam tahıllı makarna, pirinç pilavı ve zeytinyağlı yemeklere ağırlık verebilirsiniz.";
+    } else {
+        adviceText.innerHTML = "Mevcut formunuz gayet dengeli! Formunuzu korumak için ne yediğinize dikkat etmeli, makrolarınızı dengede tutmalısınız. <br><br>👉 <em>Tavsiye:</em> Yağlı ve şekerli gözüken her şeyden kaçının. Temiz karbonhidratlar (pirinç, yulaf) ve kaliteli protein (et, tavuk, balık) ile temiz beslenmeye (clean bulk/maintain) devam edin.";
+    }
 }
 </script>
 
