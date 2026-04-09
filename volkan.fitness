@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta name="description" content="yağ oranı nasıl ölçülür?">
+<meta name="keywords" content="yağ oranı,hesapla">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness ve yağ ölçümü</title>
+<style>
+
+/* Genel ayarlar */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+
+    background: url("arkaplan.jpg") no-repeat center center fixed;
+    background-size: cover;
+
+    color: #ffffff;
+}
+
+/* KUTU (YENİ) */
+.intro-box {
+    background: rgba(0,0,0,0.7);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+/* Ortalanmış içerik için container */
+.container {
+    width: 95%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Başlıklar */
+h2 {
+    color: #e93131;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+}
+h3{
+    color: #a00000;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 2.2em;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Alıntılar */
+.quote-text {
+    font-size: 20px;
+    line-height: 1.8;
+    text-align: center;
+    margin: 12px 0;
+}
+
+.quote-author {
+    color: #ddd;
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+/* Üst resimler */
+.top-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.top-images img {
+    width: 32%;
+    min-width: 500px;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Bilgi kartları */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.card {
+    background: #1c1c1c;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    width: 350px;
+    flex: 1 1 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.workout {
+    margin-top: 18px;
+    padding: 12px;
+    background: #2a2a2a;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.workout h4 {
+    margin: 0 0 6px 0;
+    color: #00ffcc;
+}
+
+/* Yağ Oranı ve Resimler */
+.bodyfat-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.bodyfat-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 300px;
+    margin-top: 20px;
+}
+
+.bodyfat-column img {
+    width: 100%;
+    max-width: 450px;
+    height: 380px;
+    border-radius: 10px;
+}
+
+/* Resim altı kartlar */
+.sub-card {
+    width: 85%;
+    background: #1c1c1c;
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.8; 
+    min-height: 280px;
+}
+
+/* Yağ oranı hesaplayıcı */
+.bodyfat-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    padding-top: 10px;     
+    padding-bottom: 0;     
+    background: #1c1c1c;
+    border-radius: 15px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 18px rgba(0,0,0,0.5);
+    margin-top: -8px;
+}
+
+.input-group {
+    margin: 18px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group input,
+.input-group select {
+    width: 92%;
+    padding: 16px 14px;
+    font-size: 20px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    text-align: center;
+    margin-top: 8px;
+    background: #2a2a2a;
+    color: #fff;
+}
+
+button {
+    padding: 18px 35px;
+    font-size: 22px;
+    border-radius: 12px;
+    border: none;
+    background: #00ffcc;
+    color: #111;
+    cursor: pointer;
+    margin-top: 28px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00e6b8;
+}
+
+#bodyFatResult {
+    margin-top: 28px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="intro-box">
+
+<h2>Vücut Geliştirme sanatı</h2>
+<p> vücut geliştirme; birçoğumuzun kendini geliştirmek ve sınırlarının dışına çıkmak için başladığı, ilerledikçe kendindeki değişimi ve potansiyeli fark ederek hayatının vazgeçilmez bir parçası haline getirdiği bir spor dalıdır. Kimisi dertlerini hafifletmeye, kimisi kafasını dağıtmaya, kimisi de kas kütlesini artırmaya gelir. Amaç ne olursa olsun ortada bir gayret vardır ve çabanın olduğu her yerde gelişim kaçınılmazdır.</p>
+
+<div class="quote-text">“Vücut geliştirme, zihninizi şekillendirmek için vücudunuzu bir araç olarak kullanmaktır.”</div>
+<div class="quote-author">— Arnold Schwarzenegger</div>
+
+<div class="quote-text">“Başarısızlık bir seçenek değildir. Herkes vücut geliştirmek ister ama kimse ağır ağırlıklar kaldırmak istemez.”</div>
+<div class="quote-author">— Ronnie Coleman</div>
+
+<div class="quote-text">“Kaslarınızın acımasına izin verin, çünkü bu onların büyüdüğünün işaretidir.”</div>
+<div class="quote-author">— Dorian Yates</div>
+
+</div>
+
+<div class="top-images">
+    <img src="fitnes2.jpg" alt="resim 2">
+    <img src="fintes4.jpg" alt="resim 4">
+    <img src="fitnes5.jpg" alt="resim 5">
+</div>
+
+<div class="cards-container">
+    <div class="card">
+        <div class="quote-text">
+            Fitness yolculuğuna yeni başlayan biri için en önemli şey mükemmel olmak değil, istikrarlı olmaktır.
+        </div>
+        <div class="author">— Unknown</div>
+        <div class="workout">
+            <h4>💪 Başlangıç Antrenmanı</h4>
+            3x10 Squat <br>
+            3x10 Şınav <br>
+            3x30 sn Plank
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="quote-text">
+            Spora yeni başlayan birçok kişi hızlı sonuç almak ister, ancak gerçek gelişim sabır ve disiplinle gelir.
+        </div>
+        <div class="author">— Unknown</div>
+        <div class="workout">
+            <h4>🔥 Kardiyo + Core</h4>
+            20 dk yürüyüş <br>
+            3x15 Mekik <br>
+            3x20 Mountain Climber
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="quote-text">
+            Fitness sadece fiziksel değil, zihinsel bir disiplindir. Vazgeçmediğin sürece ilerleme kaçınılmazdır.
+        </div>
+        <div class="author">— Unknown</div>
+        <div class="workout">
+            <h4>🏋️ Güç Antrenmanı</h4>
+            3x8 Bench Press <br>
+            3x8 Barfiks <br>
+            3x10 Dumbbell Curl
+        </div>
+    </div>
+</div>
+    <h3>Evde Bir Mezura Yardımı İle Yağ Oranınızı Ölçün</h3>
+<div class="bodyfat-section">
+    <div class="bodyfat-column">
+        <img src="erkek15.jpg" alt="%15 Yağ Erkek">
+        <div class="sub-card">
+            Erkeklerde mezura ile yağ oranı ölçümü için boyun ve bel çevresi baz alınır. En doğru sonuç için ölçüm sabah aç karnına ve vücut dinlenmişken yapılmalıdır. Mezura yere tam paralel olacak şekilde tutularak, boyun çevresi Adem elmasının hemen altından, bel çevresi ise tam göbek deliği hizasından ölçülür. Mezurayı cildi ezmeyecek kadar yumuşak ancak arada boşluk kalmayacak kadar gergin tutmak ölçümün hassasiyetini artırır; elde edilen bu iki değer, boy uzunluğu ile birlikte hesaplama formülüne eklenerek sonuç bulunur.
+        </div>
+    </div>
+
+    <div class="bodyfat-column">
+        <div class="bodyfat-card">
+            <h3>🔥 Yağ Oranı Hesaplayıcı</h3>
+            <div class="input-group">
+                <label>Cinsiyet:</label>
+                <select id="gender">
+                    <option value="male">Erkek</option>
+                    <option value="female">Kadın</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Boy (cm):</label>
+                <input type="number" id="height" placeholder="Örn: 180">
+            </div>
+            <div class="input-group">
+                <label>Boyun Çevresi (cm):</label>
+                <input type="number" id="neck" placeholder="Örn: 40">
+            </div>
+            <div class="input-group">
+                <label>Bel Çevresi (cm):</label>
+                <input type="number" id="waist" placeholder="Örn: 80">
+            </div>
+            <div class="input-group" id="hipDiv">
+                <label>Kalça Çevresi (cm - sadece kadınlar):</label>
+                <input type="number" id="hip" placeholder="Örn: 95">
+            </div>
+            <button onclick="calculateBodyFat()">Hesapla</button>
+            <h4 id="bodyFatResult"></h4>
+        </div>
+    </div>
+
+    <div class="bodyfat-column">
+        <img src="kiz15.jpg" alt="%15 Yağ Kadın">
+        <div class="sub-card">
+            Kadınlarda vücut yağ oranını hesaplamak için boyun ve bel ölçümlerine ek olarak kalça çevresi de sürece dahil edilir. Boyun yine gırtlağın hemen altından ölçülürken, bel çevresi göbek deliği hizası yerine gövdenin en dar olduğu noktadan ölçülmelidir. Kalça ölçümü ise kalçanın en geniş ve dışa doğru en çıkıntılı kısmından, mezura yere tamamen paralel kalacak şekilde alınır. Elde edilen bu üç temel değer ve boy uzunluğu kullanılarak kadınların vücut yağ yüzdesi daha isabetli bir şekilde tespit edilebilir.
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+document.getElementById("gender").addEventListener("change", function() {
+    document.getElementById("hipDiv").style.display =
+        this.value === "female" ? "flex" : "none";
+});
+
+function calculateBodyFat() {
+    let gender = document.getElementById("gender").value;
+    let height = parseFloat(document.getElementById("height").value);
+    let neck = parseFloat(document.getElementById("neck").value);
+    let waist = parseFloat(document.getElementById("waist").value);
+    let hip = parseFloat(document.getElementById("hip").value);
+
+    if (!height || !neck || !waist || (gender === "female" && !hip)) {
+        document.getElementById("bodyFatResult").innerText =
+        "Lütfen tüm alanları doldurun!";
+        return;
+    }
+
+    function log10(x) { return Math.log(x) / Math.log(10); }
+
+    let bodyFat;
+    if (gender === "male") {
+        bodyFat = 495 / (1.0324 - 0.19077 * log10(waist - neck) +
+                   0.15456 * log10(height)) - 450;
+    } else {
+        bodyFat = 495 / (1.29579 - 0.35004 * log10(waist + hip - neck) +
+                   0.22100 * log10(height)) - 450;
+    }
+
+    bodyFat = bodyFat.toFixed(1);
+    document.getElementById("bodyFatResult").innerText =
+        "Tahmini Yağ Oranı: %" + bodyFat;
+}
+</script>
+
+</body>
+</html>
