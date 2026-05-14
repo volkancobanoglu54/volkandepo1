@@ -63,6 +63,34 @@ p {
     margin-bottom: 25px;
 }
 
+/* BÖLÜM BAŞLIKLARI İÇİN YENİ KUTU TASARIMI */
+.section-header-box {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 25px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    margin: 50px auto 30px auto;
+    max-width: 900px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header-box h2 {
+    color: #00ffcc;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2.8em;
+}
+
+.section-header-box p {
+    color: #eeeeee;
+    margin-bottom: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 .quote-text {
     font-size: 20px;
     line-height: 1.8;
@@ -134,6 +162,94 @@ p {
     margin: 0 0 6px 0;
     color: #00ffcc;
 }
+
+/* HAREKETLER KÜTÜPHANESİ CSS BÖLÜMÜ */
+.exercises-wrapper {
+    margin-bottom: 60px;
+}
+
+.muscle-group-section {
+    margin-bottom: 20px; 
+    width: 100%;
+}
+
+.accordion-btn {
+    background: rgba(0, 0, 0, 0.7);
+    color: #00ffcc;
+    cursor: pointer;
+    padding: 20px 30px;
+    width: 100%;
+    text-align: center; /* Yazıyı ortala */
+    border: 2px solid #00ffcc;
+    border-radius: 15px;
+    outline: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: 0.4s;
+    display: flex;
+    justify-content: center; /* Yazıyı ortada tut */
+    align-items: center;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+    position: relative; /* Ok işareti için gerekli */
+}
+
+.accordion-btn span {
+    position: absolute;
+    right: 30px; /* Oku hep en sağda tut */
+}
+
+.accordion-btn:hover {
+    background: rgba(0, 255, 204, 0.1);
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.3);
+}
+
+.exercise-grid {
+    display: none; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 30px 0;
+}
+
+.exercise-card {
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 18px rgba(0,0,0,0.6);
+    transition: 0.3s;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.exercise-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.4);
+}
+
+.exercise-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+}
+
+.exercise-card h3 {
+    margin: 10px 0;
+    color: #ffcc00;
+}
+
+.exercise-card p {
+    font-size: 16px;
+    color: #ddd;
+    line-height: 1.6;
+}
+/* HAREKETLER CSS BİTİŞİ */
 
 .bodyfat-section {
     display: flex;
@@ -333,6 +449,7 @@ button:hover {
     .bodyfat-column { width: 90%; margin-top: 15px; }
     .bodyfat-card, .sub-card { width: 100%; padding: 20px; }
     .bodyfat-title-card { font-size: 1.6em; padding: 15px 20px; }
+    .section-header-box h2 { font-size: 2em; }
     .input-group input, .input-group select { width: 95%; }
     button { width: 95%; font-size: 20px; padding: 15px; }
     .footer-section { flex-direction: column; }
@@ -344,7 +461,7 @@ button:hover {
 
 <div class="container">
 
-<div class="intro-box">
+<div class="intro-box hidden">
 <h2>Vücut Geliştirme Sanatı</h2>
 <p>Vücut geliştirme; birçoğumuzun kendini geliştirmek ve sınırlarının dışına çıkmak için başladığı, ilerledikçe kendindeki değişimi ve potansiyeli fark ederek hayatının vazgeçilmez bir parçası haline getirdiği bir spor dalıdır. Kimisi dertlerini hafifletmeye, kimisi kafasını dağıtmaya, kimisi de kas kütlesini artırmaya gelir. Amaç ne olursa olsun ortada bir gayret vardır ve çabanın olduğu her yerde gelişim kaçınılmazdır.</p>
 <div class="quote-text">“Vücut geliştirme, zihninizi şekillendirmek için vücudunuzu bir araç olarak kullanmaktır.”</div>
@@ -355,7 +472,7 @@ button:hover {
 <div class="quote-author">— Dorian Yates</div>
 </div>
 
-<div class="top-images">
+<div class="top-images hidden">
     <img src="fitnes2.jpg" alt="resim 2">
     <img src="fintes4.jpg" alt="resim 4">
     <img src="fitnes5.jpg" alt="resim 5">
@@ -388,17 +505,680 @@ button:hover {
     </div>
 </div>
 
-<div class="bodyfat-title-card">Evde Bir Mezura Yardımı İle Yağ Oranınızı Ölçün</div>
+<!-- HAREKETLER KÜTÜPHANESİ BAŞLANGICI -->
+<div class="exercises-wrapper hidden">
+
+    <!-- BÖLÜM BAŞLIĞI: HAREKETLER -->
+    <div class="section-header-box hidden">
+        <h2>📚 Hareketler Kütüphanesi</h2>
+        <p>Tüm kas grupları için temel ve izole egzersizleri buradan inceleyebilirsin.</p>
+    </div>
+    
+    <!-- 1. GÖĞÜS -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('chest-exercises')">
+            Göğüs Hareketleri <span>▼</span>
+        </button>
+        <div id="chest-exercises" class="exercise-grid">
+            <div class="exercise-card">
+                <img src="bench-press.jpg" alt="Barbell Bench Press">
+                <h3>Barbell Bench Press</h3>
+                <p>Tüm göğüs kaslarını, omuzları (ön deltoid) ve triceps'i çalıştıran en temel güç hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="incline-dumbell-press.jpg" alt="Incline Dumbbell Press">
+                <h3>Incline Dumbbell Press</h3>
+                <p>Üst göğüs kaslarını (clavicular head) en etkili şekilde hedefleyerek göğse dolgunluk kazandırır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-crossover.jpg" alt="Cable Crossover">
+                <h3>Cable Crossover</h3>
+                <p>Kaslara sürekli gerilim vererek iç göğüs hatlarını belirginleştirir ve izolasyon sağlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="chest-dips.jpg" alt="Chest Dips">
+                <h3>Chest Dips</h3>
+                <p>Gövdeyi hafif öne eğerek yapıldığında alt göğüs kasları için mükemmel bir kendi vücut ağırlığı egzersizidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="pec-deck.jpg" alt="Pec Deck Fly">
+                <h3>Pec Deck Fly</h3>
+                <p>Sakatlanma riskini en aza indirerek göğüs kaslarını izole şekilde esnetip sıkıştırmayı sağlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="dumbbell-pullover.jpeg" alt="Dumbbell Pullover">
+                <h3>Dumbbell Pullover</h3>
+                <p>Göğüs kafesini genişleterek ve serratus anterior kasını çalıştırarak gövdeye derinlik katar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="flat-dumbbell-press.jpg" alt="Flat Dumbbell Press">
+                <h3>Flat Dumbbell Press</h3>
+                <p>Barbell versiyonuna göre daha fazla hareket açıklığı (ROM) sunarak göğüs kaslarını daha iyi esnetir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="incline-barbell-press.jpg" alt="Incline Barbell Press">
+                <h3>Incline Barbell Press</h3>
+                <p>Üst göğüs kütlesini artırmak için ağır kilolarla uygulanabilecek temel itiş egzersizidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="decline-bench-press.jpg" alt="Decline Bench Press">
+                <h3>Decline Bench Press</h3>
+                <p>Alt göğüs kaslarına odaklanarak göğsün alt sınırını keskinleştirir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="push-ups.jpg" alt="Push-Ups">
+                <h3>Push-Ups (Şınav)</h3>
+                <p>Göğüs, omuz ve arka kolu kendi vücut ağırlığınızla çalıştıran klasik ve vazgeçilmez egzersizdir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SIRT -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('back-exercises')">
+            Sırt Hareketleri <span>▼</span>
+        </button>
+        <div id="back-exercises" class="exercise-grid">
+            <div class="exercise-card">
+                <img src="romanian-deadlift.jpeg" alt="Deadlift">
+                <h3>Deadlift</h3>
+                <p>Tüm arka zinciri (sırt, bel, kalça, arka bacak) çalıştıran, kuvvet artışı için bir numaralı güç egzersizidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="barbell-row.jpeg" alt="Barbell Row">
+                <h3>Barbell Row</h3>
+                <p>Sırt kütlesini ve kalınlığını artırmak için en etkili serbest ağırlık çekiş hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="pull-up.jpeg" alt="Pull-Up">
+                <h3>Pull-Up (Barfiks)</h3>
+                <p>Latissimus dorsi (kanat) kaslarını genişleten en temel vücut ağırlığı egzersizidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lat-pulldown.jpeg" alt="Lat Pulldown">
+                <h3>Lat Pulldown</h3>
+                <p>Barfiks çekemeyenler veya kanat kaslarını izole etmek isteyenler için mükemmel bir alternatiftir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="seated-cable-row.jpeg" alt="Seated Cable Row">
+                <h3>Seated Cable Row</h3>
+                <p>Orta sırtı (rhomboids ve trapezius) hedefleyerek postürü düzeltir ve sırt kalınlığı katar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="t-bar-row.jpeg" alt="T-Bar Row">
+                <h3>T-Bar Row</h3>
+                <p>Ağır kilolarla çalışmaya olanak tanıyarak sırtın orta kısmına ciddi bir kütle ekler.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="dumbbell-row.jpeg" alt="One-Arm Dumbbell Row">
+                <h3>One-Arm Dumbbell Row</h3>
+                <p>Sağ ve sol sırt kaslarını eşit şekilde çalıştırarak kas dengesizliklerini önler.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-face-pull.jpeg" alt="Face Pull">
+                <h3>Face Pull</h3>
+                <p>Arka omuz ve üst sırtı hedef alarak omuz sağlığını koruyan kritik bir egzersizdir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="straight-arm-pulldown.jpeg" alt="Straight Arm Pulldown">
+                <h3>Straight Arm Pulldown</h3>
+                <p>Bicepsleri devre dışı bırakarak sadece kanat kaslarını (lats) izole eden etkili bir harekettir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="hyperextension.jpeg" alt="Hyperextension">
+                <h3>Hyperextension</h3>
+                <p>Erector spinae (alt sırt/bel) kaslarını güçlendirerek sakatlık riskini azaltır.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. BACAK -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('leg-exercises')">
+            Bacak Hareketleri <span>▼</span>
+        </button>
+        <div id="leg-exercises" class="exercise-grid">
+            <div class="exercise-card">
+                <img src="barbell-squat.jpeg" alt="Barbell Squat">
+                <h3>Barbell Squat</h3>
+                <p>Bacak kasları (quadriceps, hamstring, glutes) ve core bölgesi için tartışmasız en büyük temel güç hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="leg-press.jpeg" alt="Leg Press">
+                <h3>Leg Press</h3>
+                <p>Belinize yük bindirmeden bacak kaslarınıza maksimum ağırlıkla hipertrofi sağlayan makine hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="romanian-deadlift.jpeg" alt="Romanian Deadlift (RDL)">
+                <h3>Romanian Deadlift (RDL)</h3>
+                <p>Arka bacak (hamstring) ve kalça kaslarını esneterek çalıştıran en iyi hareketlerden biridir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="bulgarian-split-squat.jpeg" alt="Bulgarian Split Squat">
+                <h3>Bulgarian Split Squat</h3>
+                <p>Bacakları tek tek (unilateral) çalıştırarak dengeyi artırır ve bacak kütlesine derinlik katar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="leg-extension.jpeg" alt="Leg Extension">
+                <h3>Leg Extension</h3>
+                <p>Üst bacak (quadriceps) kaslarını tamamen izole ederek detayları ve kesik görünümü ortaya çıkarır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lying-leg-curl.jpeg" alt="Lying Leg Curl">
+                <h3>Lying Leg Curl</h3>
+                <p>Arka bacak (hamstring) kaslarını izole eden ve diz eklemini güçlendiren temel makine egzersizidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="hack-squat.jpeg" alt="Hack Squat">
+                <h3>Hack Squat</h3>
+                <p>Serbest ağırlık squatına alternatif olarak, üst bacak kaslarına yoğun bir gerilim sağlayan güvenli bir makinedir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="walking-lunges.jpeg" alt="Walking Lunges">
+                <h3>Walking Lunges</h3>
+                <p>Hem kardiyovasküler kapasiteyi zorlayan hem de kalça ve üst bacağı yakan fonksiyonel bir harekettir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="standing-calf-raise.jpeg" alt="Standing Calf Raise">
+                <h3>Standing Calf Raise</h3>
+                <p>Baldır (gastrocnemius) kaslarını tam esneme ve kasılma aralığında çalıştıran temel hareket.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="seated-calf-raise.jpeg" alt="Seated Calf Raise">
+                <h3>Seated Calf Raise</h3>
+                <p>Oturarak yapıldığı için alt baldır (soleus) kasını hedef alarak baldır kütlesini tamamlar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. OMUZ (YENİ LİSTE) -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('shoulder-exercises')">
+            Omuz Hareketleri <span>▼</span>
+        </button>
+        <div id="shoulder-exercises" class="exercise-grid">
+            <div class="exercise-card">
+                <img src="shoulder-press.jpeg" alt="Shoulder Press">
+                <h3>Shoulder Press</h3>
+                <p>Omuz kütlesi ve genel itiş kuvveti oluşturmak için temel egzersizdir. Barbell veya makine ile yapılabilir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="shoulder-press-machine.jpeg" alt="shoulder press">
+                <h3>Shoulder Press Machine </h3>
+                <p>ön omuzu daha stabil ve güçlü hissettmek için çok etili bir harekettir. Omuz ile kaldırdığımız hareketi aşağı stabil bir şekilde indirirken denge kaybbını azaltır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="dumbbell-front-raise.jpeg" alt="Dumbbell Front Raise">
+                <h3>Dumbbell Front Raise</h3>
+                <p>Ön omuz (anterior deltoid) kaslarını tamamen izole ederek omuz başlarını belirginleştirmeye yardımcı olur.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lean-away-cable-lateral-raise.jpeg" alt="Lean-Away Cable Lateral Raise">
+                <h3>Lean-Away Cable Lateral Raise</h3>
+                <p>Gövdeyi makineden uzağa eğerek yapılan bu hareket, yan omuzlarda daha geniş bir ROM ve maksimum esneme sağlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lateral-raise.jpeg" alt="Lateral Raise">
+                <h3>Lateral Raise</h3>
+                <p>Omuzları geniş gösteren orta (lateral) omuz kaslarını izole eden vazgeçilmez bir serbest ağırlık hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-lateral-raise.jpeg" alt="Cable Lateral Raise">
+                <h3>Cable Lateral Raise</h3>
+                <p>Kablo ile yapılarak yan omuz kaslarında hareketin başından sonuna kadar kusursuz ve sürekli bir gerilim yaratır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-face-pull.jpeg" alt="Cable Face Pull">
+                <h3>Cable Face Pull</h3>
+                <p>Arka omuz ve üst sırtı (trapez/rhomboid) hedefleyerek omuz sağlığını ve postürü koruyan kritik bir egzersizdir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="seated-machine-reverse.jpeg" alt="Seated Machine Reverse Pec Deck">
+                <h3>Seated Machine Reverse Pec Deck</h3>
+                <p>Arka omuz (posterior deltoid) kaslarını güvenle izole ederek 3 boyutlu bir omuz görünümünü tamamlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="upright-row.jpeg" alt="Upright Row">
+                <h3>Upright Row</h3>
+                <p>Trapez ve yan omuzları aynı anda hedef alan, omuz çatısını ve boyun çevresini güçlendiren bileşik bir harekettir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="bent-over-dumbell-reverse-fly.jpeg" alt="Bent-Over Lateral Raise">
+                <h3>Bent-Over Lateral Raise</h3>
+                <p>Gövde yere paralel eğilerek yapılan bu serbest ağırlık hareketi, arka omuz kütlesini artırmak için idealdir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ÖN KOL / BICEPS -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('biceps-exercises')">
+            Ön Kol (Biceps) Hareketleri <span>▼</span>
+        </button>
+        <div id="biceps-exercises" class="exercise-grid">
+            <div class="exercise-card">
+                <img src="barbell-curl.jpeg" alt="Barbell Curl">
+                <h3>Barbell Curl</h3>
+                <p>Pazu kütlesi inşa etmek için en ağır kilolarla çalışılabilecek klasik hacim egzersizidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="dumbbell-curl.jpeg" alt="Alternate Dumbbell Curl">
+                <h3>Dumbbell Curl</h3>
+                <p>Kolları bağımsız çalıştırarak eşit gelişim sağlar ve bilek rotasyonu ile tepe noktasını (peak) sıkar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="hammer-curl.jpeg" alt="Hammer Curl">
+                <h3>Hammer Curl</h3>
+                <p>Brachialis ve brachioradialis (ön kol) kaslarını hedefleyerek kola yandan kalınlık katar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="preacher-curl.jpeg" alt="Preacher Curl">
+                <h3>Preacher Curl</h3>
+                <p>Dirsekleri sabitleyerek cheating (hile) yapmayı önler ve bicepsi maksimum izole eder.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-biceps-curl.jpeg" alt="Cable Bicep Curl">
+                <h3>Cable Biceps Curl</h3>
+                <p>Kablo istasyonu sayesinde hareketin başından sonuna kadar bicepste sürekli bir gerilim yaratır.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ARKA KOL / TRICEPS -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('triceps-exercises')">
+            Arka Kol (Triceps) Hareketleri  <span>▼</span>
+        </button>
+        <div id="triceps-exercises" class="exercise-grid">
+            <div class="exercise-card">
+                <img src="kickback.jpeg" alt="Close-Grip Bench Press">
+                <h3>Kickback</h3>
+                <p>Triceps kasını izole edip özellikle kası sıkıştırma ve yanma hissi vermek için kullanılan bir harekettir</p>
+            </div>
+            <div class="exercise-card">
+                <img src="triceps-pushdown.jpeg" alt="Triceps Pushdown">
+                <h3>Cable Triceps Pushdown</h3>
+                <p>Kabloyla yapılan, arka kolun tüm başlarını çalıştıran ve dirsek sağlığına uygun klasik bir harekettir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="skullcrusher.jpeg" alt="Skullcrusher">
+                <h3>Skullcrusher</h3>
+                <p>Alna doğru indirilen Z-bar ile yapılan, triceps'in uzun başını (long head) büyüten hacim egzersizi.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="overhead-triceps.jpeg" alt="Overhead Dumbbell Extension">
+                <h3>Overhead Dumbbell Extension</h3>
+                <p>Kollar başın üzerinde olduğu için arka kol kasını maksimum seviyede esnetir ve geliştirir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="triceps-dips.jpeg" alt="Triceps Dips">
+                <h3>Triceps Dips</h3>
+                <p>Vücut ağırlığıyla yapılarak arka kolu hedefleyen, bankta veya paralel barda uygulanan harika bir bitiricidir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BÖLÜM BAŞLIĞI: PROGRAMLAR -->
+    <div class="section-header-box hidden">
+        <h2>🏋️ Antrenman Programları</h2>
+        <p>Seviyene en uygun programı seç ve gelişime başla.</p>
+    </div>
+
+    <!-- 7. YENİ BAŞLAYANLAR İÇİN FULL BODY PROGRAMI -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('beginner-program')" style="color: #ffcc00; border-color: #ffcc00;">
+            🔥 Başlangıç Programı (Full Body) <span>▼</span>
+        </button>
+        <div id="beginner-program" class="exercise-grid">
+            
+            <!-- Haftalık Plan Kartı (Tam Genişlik) -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: #1c1c1c; border: 1px solid #ffcc00;">
+                <h2 style="color: #ffcc00; font-size: 2em; margin-bottom: 10px; margin-top: 0;">📅 Haftalık Plan</h2>
+                <p style="font-size: 1.2em; color: #fff; line-height: 2;">
+                    <strong style="color:#00ffcc;">Pazartesi:</strong> Full Body Antrenmanı <br>
+                    <strong style="color:#ff3333;">Salı:</strong> Off Day (Dinlenme) <br>
+                    <strong style="color:#00ffcc;">Çarşamba:</strong> Full Body Antrenmanı <br>
+                    <strong style="color:#ff3333;">Perşembe:</strong> Off Day (Dinlenme) <br>
+                    <strong style="color:#00ffcc;">Cuma:</strong> Full Body Antrenmanı <br>
+                    <strong style="color:#ff9900;">Cumartesi:</strong> Kardiyo Günü <br>
+                    <strong style="color:#ff3333;">Pazar:</strong> Off Day (Dinlenme)
+                </p>
+            </div>
+
+            <!-- Full Body Başlığı -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0;">
+                <h2 style="color: #00ffcc; text-align: left; border-bottom: 2px solid #00ffcc; padding-bottom: 10px; margin-top: 20px;">💪 Full Body Günleri (Pazartesi - Çarşamba - Cuma)</h2>
+            </div>
+
+            <!-- Hareketler -->
+            <div class="exercise-card">
+                <img src="leg-press.jpeg" alt="Leg Press">
+                <h3>1. Leg Press</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Tüm üst bacağı ve kalçayı çalıştırarak antrenmana güçlü bir başlangıç yapmanı sağlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lying-leg-curl.jpeg" alt="Leg Curl">
+                <h3>2. Leg Curl</h3>
+                <p><strong>3 Set x 12-15 Tekrar</strong><br><br>Arka bacağı (hamstring) izole ederek alt vücut dengesini korur.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="bench-press.jpg" alt="Bench Press">
+                <h3>3. Bench Press</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Göğüs, omuz ve arka kol kaslarını hedef alan en temel üst vücut itiş hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lat-pulldown.jpeg" alt="Lat Pulldown">
+                <h3>4. Lat Pulldown</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Sırtı genişleten ve vücuda V şeklini kazandıran temel dikey çekiş hareketidir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="seated-cable-row.jpeg" alt="Seated Cable Row">
+                <h3>5. Seated Cable Row</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Sırt kalınlığını artırarak duruş bozukluklarını (postür) düzeltmeye yardımcı olur.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="dumbbell-curl.jpeg" alt="Dumbbell Curl">
+                <h3>6. Dumbbell Curl</h3>
+                <p><strong>3 Set x 12 Tekrar</strong><br><br>Ön kol (biceps) kaslarını sıkarak formda bir görünüm kazandırır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="triceps-pushdown.jpeg" alt="Triceps Pushdown">
+                <h3>7. Triceps Pushdown</h3>
+                <p><strong>3 Set x 12 Tekrar</strong><br><br>Kablo istasyonunda yapılarak arka kol (triceps) kaslarına sürekli bir gerilim uygular.</p>
+            </div>
+
+            <!-- Kardiyo Başlığı -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 30px;">
+                <h2 style="color: #ff9900; text-align: left; border-bottom: 2px solid #ff9900; padding-bottom: 10px;">🏃‍♂️ Kardiyo Günü (Cumartesi)</h2>
+            </div>
+
+            <div class="exercise-card">
+                <img src="kosubandi.jpg" alt="Koşu" onerror="this.src='fintes4.jpg'">
+                <h3>1. Koşu (Hafif-Orta Tempo)</h3>
+                <p><strong>Süre: 15 Dakika</strong><br><br>Kalp ritmini hızlandırarak kan dolaşımını artırır ve yağ yakım sürecini başlatır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="bisiklet.jpg" alt="Bisiklet" onerror="this.src='fitnes2.jpg'">
+                <h3>2. Kondisyon Bisikleti</h3>
+                <p><strong>Süre: 15 Dakika</strong><br><br>Eklemleri zorlamadan alt vücut dayanıklılığını ve kardiyovasküler kapasiteyi artırır.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 8. ORTA SEVİYE PROGRAM -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('intermediate-program')" style="color: #ff4081; border-color: #ff4081;">
+            ⚡ Orta Seviye Program (Bölgesel) <span>▼</span>
+        </button>
+        <div id="intermediate-program" class="exercise-grid">
+            
+            <!-- Haftalık Plan Kartı -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: #1c1c1c; border: 1px solid #ff4081;">
+                <h2 style="color: #ff4081; font-size: 2em; margin-bottom: 10px; margin-top: 0;">📅 Haftalık Plan</h2>
+                <p style="font-size: 1.2em; color: #fff; line-height: 2;">
+                    <strong style="color:#00ffcc;">Pazartesi:</strong> Göğüs & Arka Kol <br>
+                    <strong style="color:#00ffcc;">Salı:</strong> Sırt & Ön Kol <br>
+                    <strong style="color:#00ffcc;">Çarşamba:</strong> Bacak & Omuz <br>
+                    <strong style="color:#ff3333;">Perşembe:</strong> Off Day (Dinlenme) <br>
+                    <strong style="color:#00ffcc;">Cuma:</strong> Göğüs & Arka Kol (Tekrar) <br>
+                    <strong style="color:#00ffcc;">Cumartesi:</strong> Sırt & Ön Kol (Tekrar) <br>
+                    <strong style="color:#ff3333;">Pazar:</strong> Off Day (Dinlenme)
+                </p>
+            </div>
+
+            <!-- 1. GÜN BAŞLIĞI -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 20px;">
+                <h2 style="color: #00ffcc; text-align: left; border-bottom: 2px solid #00ffcc; padding-bottom: 10px;">💥 1. Gün: Göğüs & Arka Kol (Pazartesi & Cuma)</h2>
+            </div>
+            
+            <!-- Göğüs & Arka Kol Hareketleri -->
+            <div class="exercise-card">
+                <img src="bench-press.jpg" alt="Bench Press">
+                <h3>1. Bench Press</h3>
+                <p><strong>4 Set x 8-10 Tekrar</strong><br><br>Göğüs kaslarına hacim katan en temel itiş.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="incline-dumbell-press.jpg" alt="Incline Dumbbell Press">
+                <h3>2. Incline Dumbbell Press</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Üst göğsü doldurmak için en ideal açılı hareket.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-crossover.jpg" alt="Cable Crossover">
+                <h3>3. Cable Crossover</h3>
+                <p><strong>3 Set x 12-15 Tekrar</strong><br><br>İç göğsü sıkıştırmak ve lifleri izole etmek için mükemmeldir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="triceps-pushdown.jpeg" alt="Triceps Pushdown">
+                <h3>4. Triceps Pushdown</h3>
+                <p><strong>4 Set x 10-12 Tekrar</strong><br><br>Kablo istasyonunda arka kolun tüm başlarına sürekli gerilim sağlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="skullcrusher.jpeg" alt="Skullcrusher">
+                <h3>5. Skullcrusher</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Arka kola asıl hacmi ve şekli veren serbest ağırlık hareketidir.</p>
+            </div>
+
+            <!-- 2. GÜN BAŞLIĞI -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 30px;">
+                <h2 style="color: #00ffcc; text-align: left; border-bottom: 2px solid #00ffcc; padding-bottom: 10px;">🔥 2. Gün: Sırt & Ön Kol (Salı & Cumartesi)</h2>
+            </div>
+            
+            <!-- Sırt & Ön Kol Hareketleri -->
+            <div class="exercise-card">
+                <img src="lat-pulldown.jpeg" alt="Lat Pulldown">
+                <h3>1. Lat Pulldown</h3>
+                <p><strong>4 Set x 10-12 Tekrar</strong><br><br>Sırtı genişleten ve V vücut formunu destekleyen temel dikey çekiş.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="barbell-row.jpeg" alt="Barbell Row">
+                <h3>2. Barbell Row</h3>
+                <p><strong>4 Set x 8-10 Tekrar</strong><br><br>Sırt kalınlığı ve core kuvveti için vazgeçilmez serbest ağırlık egzersizi.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="seated-cable-row.jpeg" alt="Seated Cable Row">
+                <h3>3. Seated Cable Row</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Orta sırt detaylarını ortaya çıkarır ve duruşu dikleştirir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="barbell-curl.jpeg" alt="Barbell Curl">
+                <h3>4. Barbell Curl</h3>
+                <p><strong>4 Set x 10-12 Tekrar</strong><br><br>Pazu kütlesi inşa etmek için en iyi ve en ağır bar egzersizi.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="hammer-curl.jpeg" alt="Hammer Curl">
+                <h3>5. Hammer Curl</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Kola yandan genişlik katar ve brachialis kasını doğrudan hedefler.</p>
+            </div>
+
+            <!-- 3. GÜN BAŞLIĞI -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 30px;">
+                <h2 style="color: #00ffcc; text-align: left; border-bottom: 2px solid #00ffcc; padding-bottom: 10px;">🦵 3. Gün: Bacak & Omuz (Çarşamba)</h2>
+            </div>
+            
+            <!-- Bacak & Omuz Hareketleri -->
+            <div class="exercise-card">
+                <img src="barbell-squat.jpeg" alt="Barbell Squat">
+                <h3>1. Barbell Squat</h3>
+                <p><strong>4 Set x 8-10 Tekrar</strong><br><br>Tüm vücut gelişimi, güç artışı ve bacak kütlesi için efsanevi temel hareket.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="leg-press.jpeg" alt="Leg Press">
+                <h3>2. Leg Press</h3>
+                <p><strong>3 Set x 10-12 Tekrar</strong><br><br>Bacak kaslarına bele yük bindirmeden yüksek hacimle çalışabilme imkanı sunar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lying-leg-curl.jpeg" alt="Leg Curl">
+                <h3>3. Lying Leg Curl</h3>
+                <p><strong>3 Set x 12-15 Tekrar</strong><br><br>Arka bacağı (hamstring) tamamen izole eder.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="shoulder-press.jpeg" alt="Shoulder Press">
+                <h3>4. Shoulder Press</h3>
+                <p><strong>4 Set x 10-12 Tekrar</strong><br><br>Omuz başlarını inşa eden ve genel itiş kuvvetini artıran ana egzersiz.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lateral-raise.jpeg" alt="Lateral Raise">
+                <h3>5. Lateral Raise</h3>
+                <p><strong>4 Set x 12-15 Tekrar</strong><br><br>Omuzlara genişlik ve üç boyutlu estetik bir görünüm kazandırır.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 9. İLERİ SEVİYE PROGRAM -->
+    <section class="muscle-group-section">
+        <button class="accordion-btn" onclick="toggleExercises('advanced-program')" style="color: #ff3333; border-color: #ff3333;">
+            🔥 İleri Seviye Program (6 Gün) <span>▼</span>
+        </button>
+        <div id="advanced-program" class="exercise-grid">
+            
+            <!-- Haftalık Plan Kartı -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: #1c1c1c; border: 1px solid #ff3333;">
+                <h2 style="color: #ff3333; font-size: 2em; margin-bottom: 10px; margin-top: 0;">📅 Haftalık Plan</h2>
+                <p style="font-size: 1.2em; color: #fff; line-height: 2;">
+                    <strong style="color:#00ffcc;">Pazartesi & Perşembe:</strong> Göğüs, Arka Kol & Kardiyo<br>
+                    <strong style="color:#00ffcc;">Salı & Cuma:</strong> Sırt, Ön Kol & Kardiyo<br>
+                    <strong style="color:#00ffcc;">Çarşamba & Cumartesi:</strong> Bacak, Omuz & Kardiyo<br>
+                    <strong style="color:#ff3333;">Pazar:</strong> Off Day (Dinlenme)
+                </p>
+            </div>
+
+            <!-- 1. GÜN BAŞLIĞI -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 20px;">
+                <h2 style="color: #ff3333; text-align: left; border-bottom: 2px solid #ff3333; padding-bottom: 10px;">💥 1. Gün: Göğüs, Arka Kol & Kardiyo (Pzt & Per)</h2>
+            </div>
+            
+            <div class="exercise-card">
+                <img src="bench-press.jpg" alt="Bench Press">
+                <h3>1. Bench Press</h3>
+                <p><strong>3 Set x 6 Tekrar</strong><br><br>Ağır kilo, düşük tekrar ile maksimum itiş gücünü artırır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-crossover.jpg" alt="Cable Crossover">
+                <h3>2. Cable Crossover</h3>
+                <p><strong>3 Set x 8 Tekrar</strong><br><br>Göğüs liflerini sıkıştırarak hareket açıklığını maksimize eder.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="incline-dumbell-press.jpg" alt="Incline Dumbbell Press">
+                <h3>3. Incline Dumbbell Press</h3>
+                <p><strong>3 Set x 8 Tekrar</strong><br><br>Üst göğsü doldurmak için en ideal açılı hareket.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="triceps-pushdown.jpeg" alt="Triceps Pushdown">
+                <h3>4. Triceps Pushdown</h3>
+                <p><strong>3 Set x 10 Tekrar</strong><br><br>Arka kol kaslarını izole ederek şiddetli bir pompa (pump) hissi yaratır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="skullcrusher.jpeg" alt="Skullcrusher">
+                <h3>5. Skullcrusher</h3>
+                <p><strong>2 Set x 10 Tekrar</strong><br><br>Triceps'in uzun başını hedefleyerek kola gerçek kalınlığını verir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="kardio.jpeg" alt="Kardiyo - Koşu Bandı" onerror="this.src='kosubandi.jpg'">
+                <h3>6. Kardiyo (Koşu Bandı)</h3>
+                <p><strong>Süre: 15 Dakika</strong><br><br>Antrenman sonu yağ yakımını maksimize eder ve metabolizmayı hızlandırır.</p>
+            </div>
+
+            <!-- 2. GÜN BAŞLIĞI -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 30px;">
+                <h2 style="color: #ff3333; text-align: left; border-bottom: 2px solid #ff3333; padding-bottom: 10px;">🔥 2. Gün: Sırt, Ön Kol & Kardiyo (Sal & Cum)</h2>
+            </div>
+            
+            <div class="exercise-card">
+                <img src="pull-up.jpeg" alt="Pull Up">
+                <h3>1. Pull Up (Barfiks)</h3>
+                <p><strong>2 Set x 10 Tekrar</strong><br><br>Vücut ağırlığıyla yapılarak kanat (latissimus dorsi) genişliğini hedefler.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lat-pulldown.jpeg" alt="Lat Pulldown">
+                <h3>2. Lat Pulldown</h3>
+                <p><strong>2 Set x 10 Tekrar</strong><br><br>Sırt kaslarını izole çekişlerle esnetir ve çalıştırır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="seated-cable-row.jpeg" alt="Seated Cable Row">
+                <h3>3. Seated Cable Row</h3>
+                <p><strong>3 Set x 10 Tekrar</strong><br><br>Sırtın iç kısımlarına kalınlık katarak 3 boyutlu bir görünüm sağlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="straight-arm-pulldown.jpeg" alt="Straight Arm Pulldown">
+                <h3>4. Straight Arm Pulldown</h3>
+                <p><strong>2 Set x 8 Tekrar</strong><br><br>Bicepsleri devre dışı bırakıp sadece lats kaslarını kasarak bitirici vuruşu yapar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="barbell-curl.jpeg" alt="Barbell Curl">
+                <h3>5. Barbell Curl</h3>
+                <p><strong>3 Set x 10 Tekrar</strong><br><br>Biceps hacmi için ana kuvvete odaklanır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="dumbbell-curl.jpeg" alt="Dumbbell Curl">
+                <h3>6. Dumbbell Curl</h3>
+                <p><strong>3 Set x 10 Tekrar</strong><br><br>Biceps'e tepe (peak) görünümü kazandırmak için kollar bağımsız çalışır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="kardio.jpeg" alt="Kardiyo - Koşu Bandı" onerror="this.src='kosubandi.jpg'">
+                <h3>7. Kardiyo (Koşu Bandı)</h3>
+                <p><strong>Süre: 15 Dakika</strong><br><br>Antrenman sonu yağ yakımını maksimize eder ve metabolizmayı hızlandırır.</p>
+            </div>
+
+            <!-- 3. GÜN BAŞLIĞI -->
+            <div class="exercise-card" style="grid-column: 1 / -1; background: transparent; box-shadow: none; padding: 0; margin-top: 30px;">
+                <h2 style="color: #ff3333; text-align: left; border-bottom: 2px solid #ff3333; padding-bottom: 10px;">🦵 3. Gün: Bacak, Omuz & Kardiyo (Çar & Cmt)</h2>
+            </div>
+            
+            <div class="exercise-card">
+                <img src="leg-press.jpeg" alt="Leg Press">
+                <h3>1. Leg Press</h3>
+                <p><strong>3 Set x 8 Tekrar</strong><br><br>Quadriceps ve glutes kaslarını güvenli bir şekilde maksimum kilolarla zorlar.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="barbell-squat.jpeg" alt="Barbell Squat">
+                <h3>2. Barbell Squat</h3>
+                <p><strong>2 Set x 8 Tekrar</strong><br><br>Bacakların ve merkezi bölgenin (core) anabolik tepkisini tavan yaptırır.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lying-leg-curl.jpeg" alt="Leg Curl">
+                <h3>3. Lying Leg Curl</h3>
+                <p><strong>3 Set x 8 Tekrar</strong><br><br>Hamstring kaslarını hedef alarak bacak arka zincirini geliştirir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="lateral-raise.jpeg" alt="Lateral Raise">
+                <h3>4. Lateral Raise</h3>
+                <p><strong>3 Set x 10 Tekrar</strong><br><br>Yan omuz başlarını izole ederek omuz çatısını genişletir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="shoulder-press-machine.jpeg" alt="Shoulder Press Machine">
+                <h3>5. Shoulder Press Machine</h3>
+                <p><strong>3 Set x 8 Tekrar</strong><br><br>Ağır yüklerle güvenli omuz itişi sağlayarak kütle artışına destek olur.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="cable-face-pull.jpeg" alt="Cable Face Pull">
+                <h3>6. Cable Face Pull</h3>
+                <p><strong>2 Set x 8 Tekrar</strong><br><br>Arka omuzu hedefler ve omuz sağlığını (postürü) korumak için mükemmeldir.</p>
+            </div>
+            <div class="exercise-card">
+                <img src="kardio.jpeg" alt="Kardiyo - Koşu Bandı" onerror="this.src='kosubandi.jpg'">
+                <h3>7. Kardiyo (Koşu Bandı)</h3>
+                <p><strong>Süre: 15 Dakika</strong><br><br>Antrenman sonu yağ yakımını maksimize eder ve metabolizmayı hızlandırır.</p>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+<!-- HAREKETLER KÜTÜPHANESİ BİTİŞİ -->
+
+<div class="bodyfat-title-card hidden">Evde Bir Mezura Yardımı İle Yağ Oranınızı Ölçün</div>
 
 <div class="bodyfat-section">
-    <div class="bodyfat-column">
+    <div class="bodyfat-column hidden">
         <img src="erkek15.jpg" alt="%15 Yağ Erkek">
         <div class="sub-card">
             Erkeklerde mezura ile yağ oranı ölçümü için boyun ve bel çevresi baz alınır. En doğru sonuç için ölçüm sabah aç karnına ve vücut dinlenmişken yapılmalıdır. Mezura yere tam paralel olacak şekilde tutularak, boyun çevresi Adem elmasının hemen altından, bel çevresi ise tam göbek deliği hizasından ölçülür. Mezurayı cildi ezmeyecek kadar yumuşak ancak arada boşluk kalmayacak kadar gergin tutmak ölçümün hassasiyetini artırır; elde edilen bu iki değer, boy uzunluğu ile birlikte hesaplama formülüne eklenerek sonuç bulunur.
         </div>
     </div>
 
-    <div class="bodyfat-column">
+    <div class="bodyfat-column hidden">
         <div class="bodyfat-card">
             <h3>🔥 Yağ Oranı Hesaplayıcı</h3>
             <div class="input-group">
@@ -437,7 +1217,7 @@ button:hover {
         </div>
     </div>
 
-    <div class="bodyfat-column">
+    <div class="bodyfat-column hidden">
         <img src="kiz15.jpg" alt="%15 Yağ Kadın">
         <div class="sub-card">
             Kadınlarda vücut yağ oranını hesaplamak için boyun ve bel ölçümlerine ek olarak kalça çevresi de sürece dahil edilir. Boyun yine gırtlağın hemen altından ölçülürken, bel çevresi göbek deliği hizası yerine gövdenin en dar olduğu noktadan ölçülmelidir. Kalça ölçümü ise kalçanın en geniş ve dışa doğru en çıkıntılı kısmından, mezura yere tamamen paralel kalacak şekilde alınır. Elde edilen bu üç temel değer ve boy uzunluğu kullanılarak kadınların vücut yağ yüzdesi daha isabetli bir şekilde tespit edilebilir.
@@ -445,7 +1225,7 @@ button:hover {
     </div>
 </div>
 
-<div class="footer-section">
+<div class="footer-section hidden">
     <div class="advice-box">
         <h3>🍽️ Beslenme Tavsiyesi</h3>
         <p class="advice-text" id="adviceText">
@@ -554,6 +1334,16 @@ function calculateBodyFat() {
         adviceText.innerHTML = "Vücut yağ oranınız çok düşük. Hacim kazanmak (bulk) ve antrenman performansınızı artırmak için <strong>kompleks karbonhidratları</strong> artırmalısınız.<br><br>👉 <em>Tavsiye:</em> Yulaf ezmesi, fıstık ezmesi, muz, tam tahıllı makarna, pirinç pilavı ve zeytinyağlı yemeklere ağırlık verebilirsiniz.";
     } else {
         adviceText.innerHTML = "Mevcut formunuz gayet dengeli! Formunuzu korumak için ne yediğinize dikkat etmeli, makrolarınızı dengede tutmalısınız. <br><br>👉 <em>Tavsiye:</em> Yağlı ve şekerli gözüken her şeyden kaçının. Temiz karbonhidratlar (pirinç, yulaf) ve kaliteli protein (et, tavuk, balık) ile temiz beslenmeye (clean bulk/maintain) devam edin.";
+    }
+}
+
+/* HAREKETLER İÇİN JS FONKSİYONU */
+function toggleExercises(id) {
+    var element = document.getElementById(id);
+    if (element.style.display === "grid") {
+        element.style.display = "none";
+    } else {
+        element.style.display = "grid";
     }
 }
 </script>
